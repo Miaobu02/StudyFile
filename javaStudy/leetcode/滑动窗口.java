@@ -11,27 +11,27 @@
 
 //通过两个数组记录窗口所有字符串出现的次数是否和目标字符串的出现次数相同
 class Solution {
-public:
-    bool checkInclusion(string s1, string s2) {
+    public boolean checkInclusion(String s1, String s2) {
         int n = s1.length(), m = s2.length();
         if (n > m) {
             return false;
         }
-        vector<int> cnt1(26), cnt2(26);
+        int[] cnt1 = new int[26];
+        int[] cnt2 = new int[26];
         for (int i = 0; i < n; ++i) {
-            ++cnt1[s1[i] - 'a'];
-            ++cnt2[s2[i] - 'a'];
+            ++cnt1[s1.charAt(i) - 'a'];
+            ++cnt2[s2.charAt(i) - 'a'];
         }
-        if (cnt1 == cnt2) {
+        if (Arrays.equals(cnt1, cnt2)) {
             return true;
         }
         for (int i = n; i < m; ++i) {
-            ++cnt2[s2[i] - 'a'];
-            --cnt2[s2[i - n] - 'a'];
-            if (cnt1 == cnt2) {
+            ++cnt2[s2.charAt(i) - 'a'];
+            --cnt2[s2.charAt(i - n) - 'a'];
+            if (Arrays.equals(cnt1, cnt2)) {
                 return true;
             }
         }
         return false;
     }
-};
+}
